@@ -29,23 +29,27 @@
                            ;; in the default browser once Figwheel has
                            ;; started and compiled your application.
                            ;; Comment this out once it no longer serves you.
-                           :open-urls ["http://localhost:3449/index.html"]}
+                           ; :open-urls ["http://localhost:3449/index.html"]
+                           }
 
                 :compiler {:main cljent.core
-                           :asset-path "js/compiled/out"
-                           :output-to "resources/public/js/compiled/cljent.js"
-                           :output-dir "resources/public/js/compiled/out"
+                           ; :asset-path "js/compiled/out"
+                           :output-to "target/cljent.js"
+                           :output-dir "target/out"
+                           ; :output-to "resources/public/js/compiled/cljent.js"
+                           ; :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true
                            :optimizations :none
+                           :target :nodejs
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
-                           :preloads [devtools.preload]
+                           ; :preloads [devtools.preload]
 
                            :npm-deps {:left-pad "1.2.0"
                                       ; :path "0.12.7"
                                       ; :scuttlebot "10.4.10"
-                                      ; :ssb-client "4.5.2"
-                                      ; :pull-stream "3.6.1"
+                                      :ssb-client "4.5.2"
+                                      :pull-stream "3.6.1"
                                       }
                            :install-deps true
                            }}
@@ -109,7 +113,7 @@
                    :source-paths ["src" "dev"]
                    ;; for CIDER
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                   ; :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
                                                      :target-path]}})
